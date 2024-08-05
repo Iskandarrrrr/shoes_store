@@ -1,0 +1,25 @@
+
+
+<div class="product_detail-info mt-5">
+    <h2 class="product_detail-title text-center">{{ product.title }}</h2>
+    <p class="product_detail-desc">{{ product.color }}</p>
+    <p class="product_detail-price">{{ product.price }} so`m</p>
+
+    <ul class="product_detail-characteristic">
+        <li class="product_detail-characteristic_item d-flex justify-content-between">
+            <span>Size (mm)</span>
+            <span>{{ product.size }}</span>
+        </li>
+        <li class="product_detail-characteristic_item d-flex justify-content-between">
+            <span> Quantity </span>
+            <span>{{ product.quantity }}</span>
+        </li>
+        <li class="product_detail-characteristic_item d-flex justify-content-between">
+            <span>Watch type</span>
+            <span>{{ product.category }}</span>
+        </li>
+        <li class="product_detail-characteristic_item d-flex justify-content-between">
+            <span>{{ product.description }}</span>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+
+{% block main %}
+
+<main>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="box-element">
+                    <a href="{% url 'cart' %}" class="btn btn-warning rounded">
+                        Ortga qaytish
+                    </a>
+                    <hr>
+                    <h3>Buyurtmadagi maxsulotlar</h3>
+                    <hr>
+                    <div class="cart-row">
+                        <div style="flex:2"><strong></strong></div>
+                        <div style="flex:2"><strong>Mahsulot</strong></div>
+                        <div style="flex:1"><strong>Narxi</strong></div>
+                        <div style="flex:1"><strong>Soni</strong></div>
+                        <div style="flex:1"><strong>Umumiy narxi</strong></div>
+                    </div>
+                    {% for item in products %}
+                    {% include 'store/components/_cart_row.html' %}
+                    {% endfor %}
+
+                    <h5>Maxsulotlar soni: <strong>{{ order.get_cart_total_quantity }}</strong></h5>
+                    <h5>Umumiy narxi: <strong>{{ order.get_cart_total_price }}uzs</strong></h5>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="box-element">
+                    <form action="{% url 'payment' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div id="user-info">
+                            <hr>
+                            <b>Sizning ma'lumotlaringiz</b>
+                            <hr>
+                            {% if not request.user.first_name and not request.user.last_name %}
+                            <div class="form-field">
+                                {{ customer_form.first_name }}
+                            </div>
+
+                            <div class="form-field">
+                                {{ customer_form.last_name }}
+                            </div>
+                            {% else %}
+
+                            <div class="form-field">
+                                Sizning ismingiz: {{ request.user.first_name }}
+                            </div>
+                            <div class="form-field">
+                                Sizning familiyangiz: {{ request.user.last_name }}
+                            </div>
+                            <div class="form-field">
+                                Sizning tahallus: {{ request.user.username }}
+                            </div>
+                            <div class="form-field">
+                                Sizning emailingiz: {{ request.user.email }}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div id="shipping-form">
+                            <hr>
+                            <strong>Manzil kiriting</strong>
+                            <hr>
+                            {% for field in shipping_form %}
+                            <div class="form-field">
+                                {{ field }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <button class="btn btn-primary rounded" type="submit">To`lov qilish</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+{% endblock main %}

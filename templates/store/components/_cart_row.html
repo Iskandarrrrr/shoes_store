@@ -1,0 +1,62 @@
+<!--{% load static %}-->
+
+
+<!--<div class="cart-row align-items-center">-->
+<!--    <div style="flex:2"><img class="row-image text-center" src="{{ item.product.get_first_photo }}" alt=""></div>-->
+<!--    <div style="flex:2"><strong></strong></div>-->
+<!--    <div style="flex:2"><strong>{{ item.product.title }} </strong></div>-->
+<!--    <div style="flex:2"><strong></strong></div>-->
+<!--    <div style="flex:1"><strong>{{ item.product.price }}.UZS</strong></div>-->
+<!--    <div style="flex:1"><strong></strong></div>-->
+<!--    <div style="flex:1"><p class="quantity">{{ item.quantity }} </p></div>-->
+<!--    {% if 'cart' in request.path %}-->
+
+<!--    <div class="quantity">-->
+<!--        {% if item.product.quantity > 0 %}-->
+<!--        <a href="{% url 'to_cart' item.product.pk 'add' %}">-->
+<!--            <img src="{% static 'store/images/up.png' %}" alt=""-->
+<!--                 class="chg-quantity update-cart text-center" data-product="id" data-action="add">-->
+<!--        </a>-->
+<!--        {% endif %}-->
+<!--        <a href="{% url 'to_cart' item.product.pk 'delete' %}">-->
+<!--            <img src="{% static 'store/images/down.png' %}" alt=""-->
+<!--                 class="chg-quantity update-cart" data-product="id" data-action="remove">-->
+<!--        </a>-->
+
+<!--    </div>-->
+<!--    {% endif %}-->
+<!--    <div style="flex:1"><strong>{{ item.get_total_price }}.UZS</strong></div>-->
+<!--</div>-->
+
+
+{% load static %}
+
+
+<div class="cart-row align-items-center">
+    <div style="flex:2"><img class="row-image" src="{{ item.product.get_first_photo }}" alt=""></div>
+    <div style="flex:2"><strong>{{ item.product.title }}</strong></div>
+    <div style="flex:1"><strong>{{ item.product.price }}uzs</strong></div>
+    <div style="flex:1"><strong></strong></div>
+    <div style="flex:1"><p class="quantity">{{ item.quantity }}</p>
+        {% if 'cart' in request.path %}
+        <div class="quantity">
+            {% if item.product.quantity > 0 %}
+            <a href="{% url 'to_cart' item.product.pk 'add' %}">
+                <img src="{% static 'store/images/up.png' %}" alt=""
+                     class="chg-quantity update-cart" data-product="id" data-action="add">
+            </a>
+            {% endif %}
+            <a href="{% url 'to_cart' item.product.pk 'delete'  %}">
+                <img src="{% static 'store/images/down.png' %}" alt=""
+                     class="chg-quantity update-cart" data-product="id" data-action="remove">
+            </a>
+
+        </div>
+        {% endif %}
+    </div>
+
+
+    <div style="flex:1"><strong>{{ item.get_total_price }}uzs</strong></div>
+</div>
+
+
